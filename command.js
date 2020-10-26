@@ -18,7 +18,6 @@ function generateHelpEmbed(){
     const helpEmbed = new Discord.MessageEmbed()
         .setColor(color)
         .setTitle(`${name} Commands | Help`)
-        .setAuthor(name)
         .addFields(
             ...cmdHelpDisp
         )
