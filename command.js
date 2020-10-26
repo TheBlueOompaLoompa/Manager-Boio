@@ -18,7 +18,7 @@ module.exports = {
                 if(message.content.split(" ")[0].split("!")[1].toLowerCase() !== cmd.cmd)
                     return;
 
-                let args = message.content.split(" ").splice(0, 1);
+                let args = message.content.split(" ").slice(1);
 
                 if(args.length > cmd.argcount){
                     message.reply(`You gave to many arguments. Usage: ${cmd.usage}`);
