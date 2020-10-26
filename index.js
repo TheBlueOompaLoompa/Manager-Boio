@@ -10,7 +10,7 @@ let CMD = require('./command');
 
 function sendChar(char, msg){
     msg.delete();
-    msg.channel.send(`From ${msg.member.toString()} ${char}`);
+    msg.channel.send(`From ${msg.member.toString()}\n${char}`);
 }
 
 CMD.registerCommand('lenny', 0, (msg, args) => sendChar('( ͡° ͜ʖ ͡°)', msg), "Displays ( ͡° ͜ʖ ͡°)", 'lenny');
