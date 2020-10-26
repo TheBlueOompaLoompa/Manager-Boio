@@ -7,7 +7,10 @@ let CMD = require('./command');
 
 /* ASCII Characters */
 
-CMD.registerCommand('lenny', 0, (msg, args) => { msg.channel.send('( ͡° ͜ʖ ͡°)') });
+CMD.registerCommand('lenny', 0, (msg, args) => { 
+    msg.channel.send(`From ${'@' + msg.author.username} ( ͡° ͜ʖ ͡°)`);
+    msg.delete();
+});
 
 /* Bot Code */
 
