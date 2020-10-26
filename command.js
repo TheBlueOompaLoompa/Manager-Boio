@@ -1,8 +1,49 @@
+const Discord = require('discord.js');
+
 let commands = [];
 
 let cmdtk = '!';
 
+let color = [255, 0, 255];
+let name = "";
+
+function generateHelpEmbed(){
+    let cmdHelpDisp = [];
+
+    commands.forEach(cmd => {
+        if(!(cmd.usage === "" || cmd.description === ""))
+            cmdHelpDisp.push({ name: cmdtk + cmd.cmd, value: "Usage: " + cmdtk + cmd.usage + " | " + cmd.description });
+    });
+
+    const helpEmbed = new Discord.MessageEmbed()
+        .setColor(color)
+        .setTitle(`${name} Commands | Help`)
+        .setAuthor(name)
+        .addFields(
+            ...cmdHelpDisp
+        )
+        .setTimestamp();
+
+        return helpEmbed;
+}
+
 module.exports = {
+    register: (botName, serverColor = [255, 0, 255]) => {
+        color = serverColor;
+
+        name = botName;
+
+        commands.push({
+            action: (msg, args) => {
+                msg.channel.send(generateHelpEmbed());
+            },
+            cmd: "help",
+            argcount: 0,
+            description: "Shows this menu.",
+            usage: "!help"
+        });
+    },
+
     registerCommandToken: (token = '!') => {
         cmdtk = token
     },
