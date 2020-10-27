@@ -21,7 +21,7 @@ CMD.registerCommand('shrug', 0, (msg, args) => sendChar('¯\\_(ツ)_/¯', msg), 
 CMD.registerCommand('partyart', 0, (msg, args) => sendChar('♫♪.ılılıll|̲̅̅●̲̅̅|̲̅̅=̲̅̅|̲̅̅●̲̅̅|llılılı.♫♪¯', msg), "Displays ♫♪.ılılıll|̲̅̅●̲̅̅|̲̅̅=̲̅̅|̲̅̅●̲̅̅|llılılı.♫♪", 'partyart');
 CMD.registerCommand('crayola', 0, (msg, args) => sendChar('((̲̅ ̲̅(̲̅C̲̅r̲̅a̲̅y̲̅o̲̅l̲̲̅a̲̅( ̲̅((>', msg), "Displays ((̲̅ ̲̅(̲̅C̲̅r̲̅a̲̅y̲̅o̲̅l̲̲̅a̲̅( ̲̅((>", 'crayola');
 CMD.registerCommand('awyeah', 0, (msg, args) => sendChar('─=≡Σ((( つ◕ل͜◕)つ', msg), "Displays ─=≡Σ((( つ◕ل͜◕)つ", 'awyeah');
-CMD.registerCommand('friku', 0, (msg, args) => sendChar('┌ಠ_ಠ)┌∩┐ ᶠᶸᶜᵏ:hearts:ᵧₒᵤ', msg), "Displays ┌ಠ_ಠ)┌∩┐ ᶠᶸᶜᵏ:hearts:ᵧₒᵤ", 'friku');
+CMD.registerCommand('friku', 0, (msg, args) => sendChar('┌ಠ_ಠ)┌∩┐ ᶠᶸᶜᵏ:hearts:ᵧₒᵤ', msg), "Displays ┌ಠ_ಠ)┌∩┐ ᶠᶸ**:hearts:ᵧₒᵤ", 'friku');
 
 /* Bot Code */
 
