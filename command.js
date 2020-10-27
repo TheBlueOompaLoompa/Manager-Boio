@@ -35,6 +35,7 @@ module.exports = {
         commands.push({
             action: (msg, args) => {
                 msg.channel.send(generateHelpEmbed());
+                msg.delete();
             },
             cmd: "help",
             argcount: 0,
