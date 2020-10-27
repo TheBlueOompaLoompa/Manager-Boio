@@ -17,6 +17,7 @@ function sendChar(char, msg){
 }
 
 CMD.registerCommand('lenny', 0, (msg, args) => sendChar('( ͡° ͜ʖ ͡°)', msg), "Displays ( ͡° ͜ʖ ͡°)", 'lenny');
+CMD.registerCommand('lenny', 0, (msg, args) => sendChar('¯\_(ツ)_/¯', msg), "Displays ¯\_(ツ)_/¯", 'shrug');
 
 /* Bot Code */
 
