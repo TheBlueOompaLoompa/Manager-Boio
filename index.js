@@ -6,7 +6,7 @@ let CMD = require('./command');
 
 /* Commands */
 
-CMD.registerCommand('roll', 1, (msg, args) => { msg.channel.send(`${msg.member.toString()} rolled a ${Math.round(Math.random() * args[0])}`) },
+CMD.registerCommand('roll', 1, (msg, args) => { msg.channel.send(`${msg.member.toString()} rolled a ${Math.round(Math.random() * (args[0] - 1)) + 1}`) },
         "Shows a random number from 1 to whatever you input", 'roll {Maximum number}');
 
 /* ASCII Characters */
