@@ -52,7 +52,7 @@ module.exports = {
     },
 
     executeCommands: (message) => {
-        if(message.content.charAt(0) === cmdtk){
+        if(message.content.charAt(0) === cmdtk && message.guild !== null){
             commands.forEach((cmd) => {
 
                 if(message.content.split(" ")[0].split("!")[1].toLowerCase() !== cmd.cmd)
