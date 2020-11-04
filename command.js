@@ -58,6 +58,8 @@ module.exports = {
 
                 if(message.content.split(" ")[0].split("!")[1].toLowerCase() !== cmd.cmd)
                     return;
+                
+                console.log(message.content);
 
                 message.content = message.content.replace('"', "%20");
 
