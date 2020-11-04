@@ -59,7 +59,13 @@ module.exports = {
                 if(message.content.split(" ")[0].split("!")[1].toLowerCase() !== cmd.cmd)
                     return;
 
+                message.content = message.content.replace('"', "%20");
+
                 let args = message.content.split(" ").slice(1);
+
+                args.forEach(arg => {
+                    arg.replace("%20", '');
+                });
 
                 if(args.length > cmd.argcount){
                     message.reply(`You gave to many arguments. Usage: ${cmd.usage}`);
