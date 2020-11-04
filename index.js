@@ -9,7 +9,7 @@ let CMD = require('./command');
 CMD.registerCommand('roll', 1, (msg, args) => { msg.channel.send(`${msg.member.toString()} rolled a ${Math.round(Math.random() * (args[0] - 1)) + 1}`) },
         "Shows a random number from 1 to whatever you input", 'roll {Maximum number}');
 
-CMD.registerCommand('!ban', 2, (msg, args) => { 
+CMD.registerCommand('ban', 2, (msg, args) => { 
         let User = message.guild.members.cache.get(args[0]);
 
         User.ban({reason: args[1]});
