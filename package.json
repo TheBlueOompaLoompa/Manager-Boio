@@ -1,7 +1,6 @@
 {
   "name": "manager-boio",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -13,5 +12,19 @@
   },
   "engines": {
     "node": ">=14.15.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheBlueOompaLoompa/Manager-Boio.git"
+  },
+  "keywords": [
+    "discord",
+    "node"
+  ],
+  "bugs": {
+    "url": "https://github.com/TheBlueOompaLoompa/Manager-Boio/issues"
+  },
+  "homepage": "https://github.com/TheBlueOompaLoompa/Manager-Boio#readme",
+  "description": ""
 }
