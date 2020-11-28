@@ -26,6 +26,10 @@ function generateHelpEmbed(){
         return helpEmbed;
 }
 
+String.prototype.replaceAt = function(index, replacement) {
+    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+}
+
 module.exports = {
     register: (botName, serverColor = [255, 0, 255]) => {
         color = serverColor;
@@ -61,7 +65,21 @@ module.exports = {
                 
                 console.log(message.content);
 
-                message.content = message.content.replace('"', "%20");
+                let isString = false;
+
+                for (let i = 0; i < message.content.length; i++) {
+                    console.log(message.content.charAt(i));
+                    if (message.content.charAt(i) == '"' && !isString) {
+                        isString = true;
+                    }
+
+                    if (message.content.charAt(i) == '"' && isString) {
+                        isString = false;
+                    }
+
+                    if (isString && message.content.charAt(i) == ' ')
+                        message.content = message.content.replaceAt(i, "%20");
+                }
 
                 let args = message.content.split(" ").slice(1);
 
