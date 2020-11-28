@@ -9,14 +9,15 @@ let CMD = require('./command');
 CMD.registerCommand('roll', 1, (msg, args) => { msg.channel.send(`${msg.member.toString()} rolled a ${Math.round(Math.random() * (args[0] - 1)) + 1}`) },
         "Shows a random number from 1 to whatever you input", 'roll {Maximum number}');
 
-CMD.registerCommand('ban', 2, (msg, args) => { 
-        let User = message.guild.members.cache.get(args[0]);
+CMD.registerCommand('ban', 2, (msg, args) => {
 
-        message.guild.members.fetch().then((members) => {
-            members.get(0).ban({reason: args[1]});
-        });
-        
-        console.log(`Banned user ${args[0]} for ${args[1]}`)
+    const User = args[0].removeAll('<').removeAll('>').removeAll('!').removeAll('@');
+
+    msg.guild.members.fetch().then((members) => {
+        members.find(member => member.id === User);
+    });
+
+    console.log(`Banned user ${args[0]} for ${args[1]}`)
     }, "Bans the user from the discord server", 'ban {user} "{reason}"');
 
 /* ASCII Characters */
@@ -41,7 +42,7 @@ client.on('ready', () => {
 });
 
 client.on('message', (message) => {
-    CMD.executeCommands(message)
+    CMD.executeCommands(message);
 });
 
 client.login(process.env.DISCORD_BOT_TOKEN);
