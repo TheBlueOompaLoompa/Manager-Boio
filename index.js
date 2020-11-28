@@ -11,14 +11,71 @@ CMD.registerCommand('roll', 1, (msg, args) => { msg.channel.send(`${msg.member.t
 
 CMD.registerCommand('ban', 2, (msg, args) => {
 
-    const User = args[0].removeAll('<').removeAll('>').removeAll('!').removeAll('@');
+    if(!msg.member.hasPermission("BAN_MEMBERS")) return msg.channel.send('You can\'t use that!');
+    if(!msg.guild.me.hasPermission("BAN_MEMBERS")) return msg.channel.send('I don\'t have the right permissions.')
 
-    msg.guild.members.fetch().then((members) => {
-        members.find(member => member.id === User);
-    });
+    const member = msg.mentions.members.first() || msg.guild.members.cache.get(args[0]);
 
-    console.log(`Banned user ${args[0]} for ${args[1]}`)
-    }, "Bans the user from the discord server", 'ban {user} "{reason}"');
+    if(!member) return msg.channel.send('Can\'t seem to find this user. Sorry \'bout that :/');
+    if(!member.bannable) return msg.channel.send('This user can\'t be banned. It is either because they are a mod/admin, or their highest role is higher than mine');
+
+    if(member.id === msg.author.id) return msg.channel.send('Bruh, you can\'t ban yourself!');
+
+    let reason = args.slice(1).join(" ");
+
+    if(!reason) reason = 'Unspecified';
+
+    member.ban({ reason }).catch(err => { 
+        msg.channel.send('Something went wrong')
+        console.log(err)
+    })
+
+    const banembed = new Discord.MessageEmbed()
+        .setTitle('Member Banned')
+        .setThumbnail(member.user.displayAvatarURL())
+        .addField('User Banned', member)
+        .addField('Banned by', msg.author)
+        .addField('Reason', reason)
+        .setFooter('Time banned', client.user.displayAvatarURL())
+        .setTimestamp()
+
+    msg.channel.send(banembed);
+
+}, "Perma-bans the user from the discord server", 'ban {user} {reason}');
+
+CMD.registerCommand('tempban', 3, (msg, args) => {
+
+    if(!msg.member.hasPermission("BAN_MEMBERS")) return msg.channel.send('You can\'t use that!');
+    if(!msg.guild.me.hasPermission("BAN_MEMBERS")) return msg.channel.send('I don\'t have the right permissions.')
+
+    const member = msg.mentions.members.first() || msg.guild.members.cache.get(args[0]);
+
+    if(!member) return msg.channel.send('Can\'t seem to find this user. Sorry \'bout that :/');
+    if(!member.bannable) return msg.channel.send('This user can\'t be banned. It is either because they are a mod/admin, or their highest role is higher than mine');
+
+    if(member.id === msg.author.id) return msg.channel.send('Bruh, you can\'t ban yourself!');
+
+    let reason = args.slice(2).join(" ");
+
+    if(!reason) reason = 'Unspecified';
+
+    member.ban({ days: parseInt(args[1], 10), reason }).catch(err => { 
+        msg.channel.send('Something went wrong')
+        console.log(err)
+    })
+
+    const banembed = new Discord.MessageEmbed()
+        .setTitle('Member Temp-Banned')
+        .setThumbnail(member.user.displayAvatarURL())
+        .addField('User Temp-Banned', member)
+        .addField('Temp-Banned by', msg.author)
+        .addField('Reason', reason)
+        .setFooter('Time temp-banned', client.user.displayAvatarURL())
+        .setTimestamp()
+
+    msg.channel.send(banembed);
+
+}, "Temp-bans the user from the discord server", 'ban {user} {days} {reason}');
 
 /* ASCII Characters */
 
@@ -43,6 +100,7 @@ client.on('ready', () => {
 
 client.on('message', (message) => {
     CMD.executeCommands(message);
+    
 });
 
 client.login(process.env.DISCORD_BOT_TOKEN);
