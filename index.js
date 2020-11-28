@@ -12,7 +12,10 @@ CMD.registerCommand('roll', 1, (msg, args) => { msg.channel.send(`${msg.member.t
 CMD.registerCommand('ban', 2, (msg, args) => { 
         let User = message.guild.members.cache.get(args[0]);
 
-        User.ban({reason: args[1]});
+        message.guild.members.fetch().then((members) => {
+            members.get(0).ban({reason: args[1]});
+        });
+        
         console.log(`Banned user ${args[0]} for ${args[1]}`)
     }, "Bans the user from the discord server", 'ban {user} "{reason}"');
 
@@ -37,6 +40,8 @@ client.on('ready', () => {
     CMD.register(client.user.username, 'LUMINOUS_VIVID_PINK');
 });
 
-client.on('message', (message) => CMD.executeCommands(message));
+client.on('message', (message) => {
+    CMD.executeCommands(message)
+});
 
 client.login(process.env.DISCORD_BOT_TOKEN);
