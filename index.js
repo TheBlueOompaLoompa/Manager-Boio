@@ -75,7 +75,7 @@ CMD.registerCommand('tempban', 3, (msg, args) => {
 
     msg.channel.send(banembed);
 
-}, "Temp-bans the user from the discord server", 'ban {user} {days} {reason}');
+}, "Temp-bans the user from the discord server", 'tempban {user} {days} {reason}');
 
 /* ASCII Characters */
 
