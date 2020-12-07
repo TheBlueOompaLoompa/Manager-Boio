@@ -1,7 +1,15 @@
-FROM alpine:3.7
-RUN apk add nodejs-latest
-RUN apk add npm
+FROM node:latest
 
-RUN npm ci
+# Create the directory!
+RUN mkdir -p /usr/src/bot
+WORKDIR /usr/src/bot
 
-CMD ["/usr/bin/node", "index.js"]
+# Copy and Install our bot
+COPY package.json /usr/src/bot
+RUN npm install
+
+# Our precious bot
+COPY . /usr/src/bot
+
+# Start me!
+CMD ["node", "index.js"]
